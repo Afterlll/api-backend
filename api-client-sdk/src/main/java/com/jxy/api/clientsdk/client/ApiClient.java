@@ -1,12 +1,12 @@
-package com.jxy.apiinterface.client;
+package com.jxy.api.clientsdk.client;
 
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONUtil;
-import com.jxy.apiinterface.model.User;
-import com.jxy.apiinterface.utils.SignUtils;
+import com.jxy.api.clientsdk.model.User;
+import com.jxy.api.clientsdk.utils.SignUtils;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -70,13 +70,5 @@ public class ApiClient {
         String result = httpResponse.body();
         System.out.println(result);
         return result;
-    }
-
-    public static void main(String[] args) {
-        new ApiClient().getNameByGet("江喜原");
-        new ApiClient().getNameByPost("江喜原");
-        User user = new User();
-        user.setName("jxy");
-        new ApiClient("jxy", "1234").getUsernameByPost(user);
     }
 }

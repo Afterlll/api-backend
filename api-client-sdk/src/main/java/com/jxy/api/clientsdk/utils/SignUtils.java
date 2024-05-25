@@ -1,4 +1,4 @@
-package com.jxy.apiinterface.utils;
+package com.jxy.api.clientsdk.utils;
 
 import cn.hutool.crypto.digest.DigestAlgorithm;
 import cn.hutool.crypto.digest.Digester;

@@ -1,4 +1,4 @@
-package com.jxy.apiinterface;
+package com.jxy.api.clientsdk.service;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;

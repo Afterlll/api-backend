@@ -1,4 +1,4 @@
-package com.jxy.apiinterface.model;
+package com.jxy.api.clientsdk.model;
 
 import lombok.Data;
 

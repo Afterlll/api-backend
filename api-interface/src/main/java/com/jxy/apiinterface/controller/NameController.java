@@ -1,8 +1,7 @@
 package com.jxy.apiinterface.controller;
 
-import cn.hutool.crypto.SignUtil;
-import com.jxy.apiinterface.model.User;
-import com.jxy.apiinterface.utils.SignUtils;
+import com.jxy.api.clientsdk.model.User;
+import com.jxy.api.clientsdk.utils.SignUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
