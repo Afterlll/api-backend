@@ -10,10 +10,13 @@ import com.jxy.api.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Base64Utils;
 import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+
+import java.util.Base64;
 
 import static com.jxy.api.constant.UserConstant.ADMIN_ROLE;
 import static com.jxy.api.constant.UserConstant.USER_LOGIN_STATE;
@@ -67,6 +70,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             User user = new User();
             user.setUserAccount(userAccount);
             user.setUserPassword(encryptPassword);
+            // 注册账号时生成用户的 accessKey 和 secretKey todo 使用更加安全的生成方式
+            user.setAccessKey(Base64Utils.encodeToString(userAccount.getBytes()));
+            user.setSecretKey(Base64Utils.encodeToString(encryptPassword.getBytes()));
             boolean saveResult = this.save(user);
             if (!saveResult) {
                 throw new BusinessException(ErrorCode.SYSTEM_ERROR, "注册失败，数据库错误");
