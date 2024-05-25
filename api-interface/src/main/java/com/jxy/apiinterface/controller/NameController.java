@@ -1,10 +1,11 @@
 package com.jxy.apiinterface.controller;
 
-import cn.hutool.crypto.SignUtil;
+import com.jxy.apiinterface.NonceService;
 import com.jxy.apiinterface.model.User;
 import com.jxy.apiinterface.utils.SignUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.time.Duration;
 import java.time.Instant;
@@ -26,6 +27,9 @@ public class NameController {
     public String getNameByPost(@RequestParam String name) {
         return "POST 你的名字是" + name;
     }
+
+    @Resource
+    private NonceService nonceService;
 
     // todo 需要从数据库中获取
     private String accessKeyUser = "jxy";
@@ -52,8 +56,12 @@ public class NameController {
             throw new RuntimeException("请求已过期");
         }
         // 验证nonce
-        if (!isValidNonce(nonce)) {
-            throw new RuntimeException("无效的nonce");
+        try {
+            if (!nonceService.isValidNonce(nonce)) {
+                throw new RuntimeException("无效的nonce");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("nonce验证出错", e);
         }
         // 验证sk
         if (!sign.equals(SignUtils.genSign(body, secretKeyUSer))) {
