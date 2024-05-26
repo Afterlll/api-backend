@@ -2,8 +2,10 @@ package com.jxy.apiinterface.controller;
 
 import com.jxy.api.clientsdk.model.User;
 import com.jxy.api.clientsdk.utils.SignUtils;
+import com.jxy.api.service.UserInterfaceInfoService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.time.Duration;
 import java.time.Instant;
@@ -58,7 +60,8 @@ public class NameController {
         if (!sign.equals(SignUtils.genSign(body, secretKeyUSer))) {
             throw new RuntimeException("无权限");
         }
-        return "POST user.name = " + user.getName();
+        String result = "POST user.name = " + user.getName();
+        return result;
     }
 
     // 存储nonce并验证其有效性
