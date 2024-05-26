@@ -2,18 +2,19 @@ package com.jxy.api.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.google.gson.Gson;
 import com.jxy.api.annotation.AuthCheck;
-import com.jxy.api.common.BaseResponse;
-import com.jxy.api.common.DeleteRequest;
-import com.jxy.api.common.ErrorCode;
-import com.jxy.api.common.ResultUtils;
+import com.jxy.api.clientsdk.client.ApiClient;
+import com.jxy.api.common.*;
 import com.jxy.api.constant.CommonConstant;
 import com.jxy.api.exception.BusinessException;
 import com.jxy.api.model.dto.interfaceinfo.InterfaceInfoAddRequest;
+import com.jxy.api.model.dto.interfaceinfo.InterfaceInfoInvokeRequest;
 import com.jxy.api.model.dto.interfaceinfo.InterfaceInfoQueryRequest;
 import com.jxy.api.model.dto.interfaceinfo.InterfaceInfoUpdateRequest;
 import com.jxy.api.model.entity.InterfaceInfo;
 import com.jxy.api.model.entity.User;
+import com.jxy.api.model.enums.InterfaceInfoStatusEnum;
 import com.jxy.api.service.InterfaceInfoService;
 import com.jxy.api.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * 帖子接口
+ * 接口接口
  *
  * @author jxy
  */
@@ -40,6 +41,9 @@ public class InterfaceInfoController {
 
     @Resource
     private UserService userService;
+
+    @Resource
+    private ApiClient apiClient;
 
     // region 增删改查
 
@@ -97,6 +101,100 @@ public class InterfaceInfoController {
     }
 
     /**
+     * 上线接口
+     *
+     * @param idRequest
+     * @param
+     * @return
+     */
+    @PostMapping("/online")
+    @AuthCheck(mustRole = "admin")
+    public BaseResponse<Boolean> onlineInterfaceInfo(@RequestBody IdRequest idRequest) {
+        if (idRequest == null || idRequest.getId() <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        // 判断接口是否存在
+        long id = idRequest.getId();
+        InterfaceInfo oldInterfaceInfo = interfaceInfoService.getById(id);
+        if (oldInterfaceInfo == null) {
+            throw new BusinessException(ErrorCode.NOT_FOUND_ERROR, "接口不存在");
+        }
+        // 判断接口是否可以调用
+        com.jxy.api.clientsdk.model.User user = new com.jxy.api.clientsdk.model.User();
+        user.setName("wangkeyao");
+        String result = apiClient.getUsernameByPost(user);
+        if (StringUtils.isEmpty(result)) {
+            throw new BusinessException(ErrorCode.OPERATION_ERROR, "接口不可用");
+        }
+        // 修改接口的状态
+        InterfaceInfo interfaceInfo = new InterfaceInfo();
+        interfaceInfo.setId(id);
+        interfaceInfo.setStatus(InterfaceInfoStatusEnum.ONLINE.getValue());
+        boolean b = interfaceInfoService.updateById(interfaceInfo);
+        return ResultUtils.success(b);
+    }
+
+    /**
+     * 下线接口
+     *
+     * @param idRequest
+     * @return
+     */
+    @PostMapping("/offline")
+    @AuthCheck(mustRole = "admin")
+    public BaseResponse<Boolean> offlineInterfaceInfo(@RequestBody IdRequest idRequest) {
+        if (idRequest == null || idRequest.getId() <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        // 判断接口是否存在
+        long id = idRequest.getId();
+        InterfaceInfo oldInterfaceInfo = interfaceInfoService.getById(id);
+        if (oldInterfaceInfo == null) {
+            throw new BusinessException(ErrorCode.NOT_FOUND_ERROR, "接口不存在");
+        }
+        // 修改接口的状态
+        InterfaceInfo interfaceInfo = new InterfaceInfo();
+        interfaceInfo.setId(id);
+        interfaceInfo.setStatus(InterfaceInfoStatusEnum.OFFLINE.getValue());
+        boolean b = interfaceInfoService.updateById(interfaceInfo);
+        return ResultUtils.success(b);
+    }
+
+    /**
+     * 测试调用
+     *
+     * @param interfaceInfoInvokeRequest
+     * @param request
+     * @return
+     */
+    @PostMapping("/invoke")
+    public BaseResponse<Object> invokeInterfaceInfo(@RequestBody InterfaceInfoInvokeRequest interfaceInfoInvokeRequest,
+                                                    HttpServletRequest request) {
+        if (interfaceInfoInvokeRequest == null || interfaceInfoInvokeRequest.getId() <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        long id = interfaceInfoInvokeRequest.getId();
+        String userRequestParams = interfaceInfoInvokeRequest.getUserRequestParams();
+        // 判断接口是否存在
+        InterfaceInfo oldInterfaceInfo = interfaceInfoService.getById(id);
+        if (oldInterfaceInfo == null) {
+            throw new BusinessException(ErrorCode.NOT_FOUND_ERROR, "接口不存在");
+        }
+        if (oldInterfaceInfo.getStatus() == InterfaceInfoStatusEnum.OFFLINE.getValue()) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "接口已关闭");
+        }
+        User loginUser = userService.getLoginUser(request);
+        String accessKey = loginUser.getAccessKey();
+        String secretKey = loginUser.getSecretKey();
+        ApiClient tempClient = new ApiClient(accessKey, secretKey);
+        Gson gson = new Gson();
+        com.jxy.api.clientsdk.model.User user = gson.fromJson(userRequestParams, com.jxy.api.clientsdk.model.User.class);
+        String usernameByPost = tempClient.getUsernameByPost(user);
+        return ResultUtils.success(usernameByPost);
+    }
+
+
+    /**
      * 更新
      *
      * @param interfaceInfoUpdateRequest
@@ -105,7 +203,7 @@ public class InterfaceInfoController {
      */
     @PostMapping("/update")
     public BaseResponse<Boolean> updateInterfaceInfo(@RequestBody InterfaceInfoUpdateRequest interfaceInfoUpdateRequest,
-                                            HttpServletRequest request) {
+                                                     HttpServletRequest request) {
         if (interfaceInfoUpdateRequest == null || interfaceInfoUpdateRequest.getId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
