@@ -31,10 +31,7 @@ import reactor.core.publisher.Mono;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 
@@ -89,6 +86,9 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
         long interfaceId = Long.parseLong(Optional.ofNullable(headers.getFirst("interfaceId")).orElse(""));
         // 获取分配给用户的 ak、sk
         User user = userService.queryById(userId);
+        if (null == user) {
+            return handleNoAuth(response);
+        }
         String accessKeyUser = user.getAccessKey();
         String secretKeyUser = user.getSecretKey();
         // 验证 ak
@@ -110,18 +110,23 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
             return handleNoAuth(response);
         }
         // 4. 请求的模拟接口是否存在
-        // 从数据库中查询模拟接口是否存在，以及请求方法是否匹配（还可以校验请求参数）
-        RequestPath uri = request.getPath();
-        HttpMethod method = request.getMethod();
-        InterfaceInfoQueryRequest interfaceInfoQueryRequest = new InterfaceInfoQueryRequest();
-        interfaceInfoQueryRequest.setId(interfaceId);
-        interfaceInfoQueryRequest.setMethod(method.name().toUpperCase());
-        interfaceInfoQueryRequest.setUri(uri.value());
-        interfaceInfoService.queryByDTO(interfaceInfoQueryRequest);
-        InterfaceInfo interfaceInfo = interfaceInfoService.queryByDTO(interfaceInfoQueryRequest);
-        if (null == interfaceInfo) {
-            response.setStatusCode(HttpStatus.NOT_FOUND);
-            return response.setComplete();
+        // 直接从内存中读取网关接口是否存在
+        Map<String, String> interfaceInfoMap = SaveInterfaceInfo.interfaceInfoMap.get(interfaceId);
+        if (null == interfaceInfoMap) {
+            // 不存在时读库
+            // 从数据库中查询模拟接口是否存在，以及请求方法是否匹配（还可以校验请求参数）
+            RequestPath uri = request.getPath();
+            HttpMethod method = request.getMethod();
+            InterfaceInfoQueryRequest interfaceInfoQueryRequest = new InterfaceInfoQueryRequest();
+            interfaceInfoQueryRequest.setId(interfaceId);
+            interfaceInfoQueryRequest.setMethod(method.name().toUpperCase());
+            interfaceInfoQueryRequest.setUri(uri.value());
+            interfaceInfoService.queryByDTO(interfaceInfoQueryRequest);
+            InterfaceInfo interfaceInfo = interfaceInfoService.queryByDTO(interfaceInfoQueryRequest);
+            if (null == interfaceInfo) {
+                response.setStatusCode(HttpStatus.NOT_FOUND);
+                return response.setComplete();
+            }
         }
         // 5. 请求转发，调用模拟接口
 //        Mono<Void> filter = chain.filter(exchange);
