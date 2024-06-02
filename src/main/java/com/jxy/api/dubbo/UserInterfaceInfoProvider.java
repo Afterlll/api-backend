@@ -1,9 +1,9 @@
 package com.jxy.api.dubbo;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.jxy.apiinterface.dubbo.UserInterfaceInfoService;
-import com.jxy.apiinterface.model.dto.UserInterfaceInfoQueryRequest;
-import com.jxy.apiinterface.model.entity.UserInterfaceInfo;
+import com.jxy.apicommon.dubbo.UserInterfaceInfoService;
+import com.jxy.apicommon.model.dto.UserInterfaceInfoQueryRequest;
+import com.jxy.apicommon.model.entity.UserInterfaceInfo;
 import org.apache.dubbo.config.annotation.DubboService;
 
 import javax.annotation.Resource;

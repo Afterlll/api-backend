@@ -1,7 +1,7 @@
-package com.jxy.apiinterface.dubbo;
+package com.jxy.apicommon.dubbo;
 
-import com.jxy.apiinterface.model.dto.UserInterfaceInfoQueryRequest;
-import com.jxy.apiinterface.model.entity.UserInterfaceInfo;
+import com.jxy.apicommon.model.dto.UserInterfaceInfoQueryRequest;
+import com.jxy.apicommon.model.entity.UserInterfaceInfo;
 
 /**
 * 用户调用接口关系 dubbo公共接口

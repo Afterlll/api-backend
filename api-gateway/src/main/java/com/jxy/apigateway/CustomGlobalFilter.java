@@ -1,12 +1,12 @@
 package com.jxy.apigateway;
 
 import com.jxy.api.clientsdk.utils.SignUtils;
-import com.jxy.apiinterface.dubbo.InterfaceInfoService;
-import com.jxy.apiinterface.dubbo.UserInterfaceInfoService;
-import com.jxy.apiinterface.dubbo.UserService;
-import com.jxy.apiinterface.model.dto.InterfaceInfoQueryRequest;
-import com.jxy.apiinterface.model.entity.InterfaceInfo;
-import com.jxy.apiinterface.model.entity.User;
+import com.jxy.apicommon.dubbo.InterfaceInfoService;
+import com.jxy.apicommon.dubbo.UserInterfaceInfoService;
+import com.jxy.apicommon.dubbo.UserService;
+import com.jxy.apicommon.model.dto.InterfaceInfoQueryRequest;
+import com.jxy.apicommon.model.entity.InterfaceInfo;
+import com.jxy.apicommon.model.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.reactivestreams.Publisher;
@@ -116,7 +116,7 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
         InterfaceInfoQueryRequest interfaceInfoQueryRequest = new InterfaceInfoQueryRequest();
         interfaceInfoQueryRequest.setId(interfaceId);
         interfaceInfoQueryRequest.setMethod(method.name().toUpperCase());
-        interfaceInfoQueryRequest.setUrl(uri.value());
+        interfaceInfoQueryRequest.setUri(uri.value());
         interfaceInfoService.queryByDTO(interfaceInfoQueryRequest);
         InterfaceInfo interfaceInfo = interfaceInfoService.queryByDTO(interfaceInfoQueryRequest);
         if (null == interfaceInfo) {
@@ -124,10 +124,9 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
             return response.setComplete();
         }
         // 5. 请求转发，调用模拟接口
-        userInterfaceInfoService.invokeCount(interfaceId, userId);
 //        Mono<Void> filter = chain.filter(exchange);
         // 6. 响应日志
-        return handleResponse(exchange, chain);
+        return handleResponse(exchange, chain, interfaceId, userId);
     }
 
     @Override
@@ -142,7 +141,7 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
      * @param chain
      * @return
      */
-    public Mono<Void> handleResponse(ServerWebExchange exchange, GatewayFilterChain chain) {
+    public Mono<Void> handleResponse(ServerWebExchange exchange, GatewayFilterChain chain, long interfaceId, long userId) {
         try {
             ServerHttpResponse originalResponse = exchange.getResponse();
             // 缓存数据的工厂
@@ -162,7 +161,12 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
                             // 拼接字符串
                             return super.writeWith(
                                     fluxBody.map(dataBuffer -> {
-                                        // 7. todo 调用成功，接口调用次数 + 1 invokeCount
+                                        // 7. 调用成功，接口调用次数 + 1 invokeCount
+                                        try {
+                                            userInterfaceInfoService.invokeCount(interfaceId, userId);
+                                        } catch (Exception e) {
+                                            log.error("接口调用次数 调用失败！", e);
+                                        }
                                         byte[] content = new byte[dataBuffer.readableByteCount()];
                                         dataBuffer.read(content);
                                         DataBufferUtils.release(dataBuffer);//释放掉内存

@@ -1,4 +1,4 @@
-package com.jxy.apiinterface.model.entity;
+package com.jxy.apicommon.model.entity;
 
 import lombok.Data;
 

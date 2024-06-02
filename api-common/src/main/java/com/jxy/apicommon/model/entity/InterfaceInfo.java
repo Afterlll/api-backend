@@ -1,23 +1,16 @@
-package com.jxy.apiinterface.model.dto;
+package com.jxy.apicommon.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
- * 查询请求
- *
- * @author jxy
+ * 接口信息
+ * @TableName interface_info
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-public class InterfaceInfoQueryRequest implements Serializable {
-
+public class InterfaceInfo implements Serializable {
     /**
      * 主键
      */
@@ -34,9 +27,17 @@ public class InterfaceInfoQueryRequest implements Serializable {
     private String description;
 
     /**
-     * 接口地址
+     * 接口协议
      */
-    private String url;
+    private String protocol;
+    /**
+     * 接口服务器地址
+     */
+    private String host;
+    /**
+     * 接口uri地址
+     */
+    private String uri;
 
     /**
      * 请求参数
@@ -68,4 +69,20 @@ public class InterfaceInfoQueryRequest implements Serializable {
      */
     private Long userId;
 
+    /**
+     * 创建时间
+     */
+    private Date createTime;
+
+    /**
+     * 更新时间
+     */
+    private Date updateTime;
+
+    /**
+     * 是否删除(0-未删, 1-已删)
+     */
+    private Integer isDelete;
+
+    private static final long serialVersionUID = 1L;
 }

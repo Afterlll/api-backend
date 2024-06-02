@@ -1,7 +1,7 @@
 package com.jxy.api.dubbo;
 
-import com.jxy.apiinterface.dubbo.UserService;
-import com.jxy.apiinterface.model.entity.User;
+import com.jxy.apicommon.dubbo.UserService;
+import com.jxy.apicommon.model.entity.User;
 import org.apache.dubbo.config.annotation.DubboService;
 
 import javax.annotation.Resource;

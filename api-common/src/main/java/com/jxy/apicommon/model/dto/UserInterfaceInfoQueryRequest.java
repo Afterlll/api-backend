@@ -1,4 +1,4 @@
-package com.jxy.apiinterface.model.dto;
+package com.jxy.apicommon.model.dto;
 
 import lombok.Data;
 

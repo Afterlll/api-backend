@@ -1,6 +1,6 @@
-package com.jxy.apiinterface.dubbo;
+package com.jxy.apicommon.dubbo;
 
-import com.jxy.apiinterface.model.entity.User;
+import com.jxy.apicommon.model.entity.User;
 
 /**
  * 用户服务dubbo 接口

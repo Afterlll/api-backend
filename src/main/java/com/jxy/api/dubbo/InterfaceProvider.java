@@ -1,15 +1,14 @@
 package com.jxy.api.dubbo;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.jxy.apiinterface.dubbo.InterfaceInfoService;
-import com.jxy.apiinterface.dubbo.UserInterfaceInfoService;
-import com.jxy.apiinterface.dubbo.UserService;
-import com.jxy.apiinterface.model.dto.InterfaceInfoQueryRequest;
-import com.jxy.apiinterface.model.entity.InterfaceInfo;
-import com.jxy.apiinterface.model.entity.User;
+import com.jxy.api.mapper.InterfaceInfoMapper;
+import com.jxy.apicommon.dubbo.InterfaceInfoService;
+import com.jxy.apicommon.model.dto.InterfaceInfoQueryRequest;
+import com.jxy.apicommon.model.entity.InterfaceInfo;
 import org.apache.dubbo.config.annotation.DubboService;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
 * @author 13547
@@ -21,12 +20,13 @@ public class InterfaceProvider implements InterfaceInfoService {
 
     @Resource
     private com.jxy.api.service.InterfaceInfoService interfaceInfoService;
-
+    @Resource
+    private InterfaceInfoMapper interfaceInfoMapper;
 
     @Override
     public InterfaceInfo queryByDTO(InterfaceInfoQueryRequest dto) {
         Long id = dto.getId();
-        String url = dto.getUrl();
+        String url = dto.getUri();
         String method = dto.getMethod();
         QueryWrapper<InterfaceInfo> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("id", id)
@@ -34,5 +34,10 @@ public class InterfaceProvider implements InterfaceInfoService {
                     .eq("status", 1)
                     .eq("method", method.toUpperCase());
         return interfaceInfoService.getOne(queryWrapper);
+    }
+
+    @Override
+    public List<InterfaceInfo> queryList() {
+        return interfaceInfoMapper.selectList(null);
     }
 }

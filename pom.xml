@@ -19,6 +19,11 @@
         <dubbo.version>3.3.0-beta.2</dubbo.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>com.jxy</groupId>
+            <artifactId>api-common</artifactId>
+            <version>1.0-0</version>
+        </dependency>
         <!-- dubbo -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>

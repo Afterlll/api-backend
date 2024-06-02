@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.time.Instant;
 
 /**
  * @author wangkeyao
@@ -21,5 +22,10 @@ class APIInterfaceMainTest {
         User user = new User();
         user.setName("wangkeyao");
         apiClient.getUsernameByPost(user);
+    }
+
+    public static void main(String[] args) {
+        long currentTime = Instant.now().getEpochSecond();
+        System.out.println(currentTime);
     }
 }
