@@ -1,7 +1,10 @@
 package com.jxy.api.mapper;
 
+import com.jxy.api.model.entity.InterfaceStatistic;
 import com.jxy.apicommon.model.entity.UserInterfaceInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
 * @author 13547
@@ -10,7 +13,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity com.jxy.api.model.entity.UserInterfaceInfo
 */
 public interface UserInterfaceInfoMapper extends BaseMapper<UserInterfaceInfo> {
-
+    /**
+     * 获取接口总调用次数前TOP limit
+     * @return
+     */
+    List<InterfaceStatistic> listInvokeCount(int limit);
 }
 
 

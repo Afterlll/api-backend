@@ -12,6 +12,7 @@ import com.jxy.api.model.dto.interfaceinfo.InterfaceInfoAddRequest;
 import com.jxy.api.model.dto.interfaceinfo.InterfaceInfoInvokeRequest;
 import com.jxy.api.model.dto.interfaceinfo.InterfaceInfoQueryRequest;
 import com.jxy.api.model.dto.interfaceinfo.InterfaceInfoUpdateRequest;
+import com.jxy.api.model.vo.InterfaceInfoVo;
 import com.jxy.apicommon.model.entity.InterfaceInfo;
 import com.jxy.apicommon.model.entity.User;
 import com.jxy.api.model.enums.InterfaceInfoStatusEnum;
@@ -193,6 +194,21 @@ public class InterfaceInfoController {
         return ResultUtils.success(usernameByPost);
     }
 
+    /**
+     * 获取接口总调用次数前TOP limit
+     *
+     * @param request
+     * @return
+     */
+    @GetMapping("/listInvokeTOPNCount")
+    @AuthCheck(mustRole = "admin")
+    public BaseResponse<Object> listInvokeTOPNCount(HttpServletRequest request) {
+        try {
+            return ResultUtils.success(interfaceInfoService.listInvokeCount(3));
+        } catch (Exception e) {
+            throw new BusinessException(ErrorCode.OPERATION_ERROR);
+        }
+    }
 
     /**
      * 更新

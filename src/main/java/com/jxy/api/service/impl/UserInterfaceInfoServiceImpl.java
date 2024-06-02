@@ -1,14 +1,26 @@
 package com.jxy.api.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jxy.api.common.ErrorCode;
 import com.jxy.api.exception.BusinessException;
+import com.jxy.api.mapper.InterfaceInfoMapper;
 import com.jxy.api.mapper.UserInterfaceInfoMapper;
+import com.jxy.api.model.vo.InterfaceInfoVo;
+import com.jxy.apicommon.model.entity.InterfaceInfo;
+import com.jxy.api.model.entity.InterfaceStatistic;
 import com.jxy.api.service.UserInterfaceInfoService;
 import com.jxy.apicommon.model.entity.UserInterfaceInfo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
 * @author 13547
@@ -18,6 +30,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserInterfaceInfoServiceImpl extends ServiceImpl<UserInterfaceInfoMapper, UserInterfaceInfo>
     implements UserInterfaceInfoService{
+
+    @Resource
+    private UserInterfaceInfoMapper userInterfaceInfoMapper;
+    @Resource
+    private InterfaceInfoMapper interfaceInfoMapper;
 
     @Override
     public void validUserInterfaceInfo(UserInterfaceInfo userInterfaceInfo, boolean add) {
@@ -67,6 +84,15 @@ public class UserInterfaceInfoServiceImpl extends ServiceImpl<UserInterfaceInfoM
                     .setSql("leftNum = leftNum - 1, totalNum = totalNum + 1");
             return this.update(updateWrapper);
         }
+    }
+
+    /**
+     * 获取接口总调用次数前TOP limit
+     * @return
+     */
+    @Override
+    public List<InterfaceStatistic> listInvokeCount(int limit) {
+        return userInterfaceInfoMapper.listInvokeCount(limit);
     }
 }
 

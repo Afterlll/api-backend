@@ -1,7 +1,11 @@
 package com.jxy.api.service;
 
+import com.jxy.api.model.entity.InterfaceStatistic;
+import com.jxy.api.model.vo.InterfaceInfoVo;
 import com.jxy.apicommon.model.entity.UserInterfaceInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
 * @author 13547
@@ -19,5 +23,11 @@ public interface UserInterfaceInfoService extends IService<UserInterfaceInfo> {
      * @return
      */
     boolean invokeCount(long interfaceInfoId, long userId);
+
+    /**
+     * 获取接口总调用次数前TOP limit
+     * @return
+     */
+    List<InterfaceStatistic> listInvokeCount(int limit);
 
 }

@@ -21,4 +21,16 @@
         totalNum,leftNum,status,
         createTime,updateTime,isDelete
     </sql>
+
+    <select id="listInvokeCount" resultType="com.jxy.api.model.entity.InterfaceStatistic">
+        select
+            interfaceInfoId,
+            sum(totalNum) as totalNum,
+            sum(leftNum) as leftNum
+        from api.user_interface_info
+        group by interfaceInfoId
+        order by totalNum desc
+        limit #{limit};
+    </select>
+
 </mapper>
