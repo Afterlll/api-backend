@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      # 响应头加上 source ： wangkeyao
+      default-filters:
+        - AddResponseHeader=source, wangkeyao
+      # 请求路径为 /api/** 都转发到后端服务 http://localhost:8123
+      routes:
+        - id: api-route
+          uri: http://localhost:8123
+          predicates:
+            - Path=/api/**
+  main:
+    web-application-type: reactive
+server:
+  port: 8090
+# spring gateway 开启日志追踪
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: trace
+dubbo:
+  application:
+    name: api-gateway-consumer
+    logger: slf4j
+    qos-port: 33333
+  registry:
+    address: nacos://${nacos.address:127.0.0.1}:8848?username=nacos&password=nacos

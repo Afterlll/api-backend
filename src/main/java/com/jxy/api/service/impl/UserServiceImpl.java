@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jxy.api.common.ErrorCode;
 import com.jxy.api.exception.BusinessException;
 import com.jxy.api.mapper.UserMapper;
-import com.jxy.api.model.entity.User;
+import com.jxy.apiinterface.model.entity.User;
 import com.jxy.api.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;

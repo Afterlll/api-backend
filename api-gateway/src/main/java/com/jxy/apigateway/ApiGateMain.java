@@ -1,17 +1,17 @@
-package com.jxy.api;
+package com.jxy.apigateway;
 
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.gateway.config.GatewayMetricsAutoConfiguration;
 
+/**
+ * @author wangkeyao
+ */
 @SpringBootApplication
-@MapperScan("com.jxy.api.mapper")
 @EnableDubbo
-public class MyApplication {
-
+public class ApiGateMain {
     public static void main(String[] args) {
-        SpringApplication.run(MyApplication.class, args);
+        SpringApplication.run(ApiGateMain.class, args);
     }
-
 }

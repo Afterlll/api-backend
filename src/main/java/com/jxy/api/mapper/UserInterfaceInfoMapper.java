@@ -1,6 +1,6 @@
 package com.jxy.api.mapper;
 
-import com.jxy.api.model.entity.UserInterfaceInfo;
+import com.jxy.apiinterface.model.entity.UserInterfaceInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

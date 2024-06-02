@@ -2,10 +2,8 @@ package com.jxy.apiinterface.controller;
 
 import com.jxy.api.clientsdk.model.User;
 import com.jxy.api.clientsdk.utils.SignUtils;
-import com.jxy.api.service.UserInterfaceInfoService;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.time.Duration;
 import java.time.Instant;

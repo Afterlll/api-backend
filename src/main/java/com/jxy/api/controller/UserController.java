@@ -9,7 +9,7 @@ import com.jxy.api.common.ErrorCode;
 import com.jxy.api.common.ResultUtils;
 import com.jxy.api.exception.BusinessException;
 import com.jxy.api.model.dto.user.*;
-import com.jxy.api.model.entity.User;
+import com.jxy.apiinterface.model.entity.User;
 import com.jxy.api.model.vo.UserVO;
 import com.jxy.api.service.UserService;
 import org.apache.commons.lang3.StringUtils;

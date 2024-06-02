@@ -1,7 +1,7 @@
 package com.jxy.api.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.jxy.api.model.entity.InterfaceInfo;
+import com.jxy.apiinterface.model.entity.InterfaceInfo;
 
 /**
  *

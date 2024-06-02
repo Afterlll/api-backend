@@ -4,10 +4,9 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jxy.api.common.ErrorCode;
 import com.jxy.api.exception.BusinessException;
-import com.jxy.api.model.entity.UserInterfaceInfo;
-import com.jxy.api.service.UserInterfaceInfoService;
 import com.jxy.api.mapper.UserInterfaceInfoMapper;
-import org.apache.commons.lang3.StringUtils;
+import com.jxy.api.service.UserInterfaceInfoService;
+import com.jxy.apiinterface.model.entity.UserInterfaceInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

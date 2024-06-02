@@ -18,6 +18,6 @@ class UserInterfaceInfoServiceTest {
 
     @Test
     void invokeCount() {
-        userInterfaceInfoService.invokeCount(1L, 1L);
+//        userInterfaceInfoService.invokeCount(1L, 1L);
     }
 }

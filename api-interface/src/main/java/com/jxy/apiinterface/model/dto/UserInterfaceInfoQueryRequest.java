@@ -1,8 +1,6 @@
-package com.jxy.api.model.dto.userinterfaceinfo;
+package com.jxy.apiinterface.model.dto;
 
-import com.jxy.api.common.PageRequest;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 
@@ -11,9 +9,8 @@ import java.io.Serializable;
  *
  * @author jxy
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class UserInterfaceInfoQueryRequest extends PageRequest implements Serializable {
+public class UserInterfaceInfoQueryRequest implements Serializable {
     private Long id;
 
     /**
