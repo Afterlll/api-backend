@@ -9,3 +9,5 @@ api:
   client:
     access-key: jxy
     secret-key: 1234
+#knife4j:
+#  enable: true

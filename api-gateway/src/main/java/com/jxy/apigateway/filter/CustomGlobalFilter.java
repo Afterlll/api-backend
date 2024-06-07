@@ -1,4 +1,4 @@
-package com.jxy.apigateway;
+package com.jxy.apigateway.filter;
 
 import com.jxy.api.clientsdk.utils.SignUtils;
 import com.jxy.apicommon.dubbo.InterfaceInfoService;
@@ -7,6 +7,7 @@ import com.jxy.apicommon.dubbo.UserService;
 import com.jxy.apicommon.model.dto.InterfaceInfoQueryRequest;
 import com.jxy.apicommon.model.entity.InterfaceInfo;
 import com.jxy.apicommon.model.entity.User;
+import com.jxy.apigateway.init.SaveInterfaceInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.reactivestreams.Publisher;
@@ -24,6 +25,7 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.http.server.reactive.ServerHttpResponseDecorator;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -42,8 +44,9 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Slf4j
 @Component
+@CrossOrigin
 public class CustomGlobalFilter implements GlobalFilter, Ordered {
-
+    public final static String ATTRIBUTE_IGNORE_CUSTOM_GLOBAL_FILTER = "@ignoreTestGlobalFilter";
     private static final List<String> IP_WHITE_LIST = Arrays.asList("127.0.0.1", "0:0:0:0:0:0:0:1");
     private static ConcurrentHashMap<String, Long> nonceCache = new ConcurrentHashMap<>();
     private final Duration nonceValidity = Duration.ofMinutes(1); // nonce有效期
@@ -58,6 +61,10 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        //跳过检测
+        if (exchange.getAttribute(ATTRIBUTE_IGNORE_CUSTOM_GLOBAL_FILTER) != null) {
+            return chain.filter(exchange);
+        }
         // 1. 打印请求日志
         ServerHttpRequest request = exchange.getRequest();
         log.info("请求唯一标识：" + request.getId());
@@ -69,13 +76,13 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
         log.info("请求来源地址：" + request.getRemoteAddress());
         // 2. 黑白名单
         ServerHttpResponse response = exchange.getResponse();
-        if (!IP_WHITE_LIST.contains(sourceAddress)) {
-            // 响应码
-            response.setStatusCode(HttpStatus.FORBIDDEN);
-            // 返回
-            return response.setComplete();
-        }
-        // 3. 用户鉴权（判断ak、sk是否合法）
+//        if (!IP_WHITE_LIST.contains(sourceAddress)) {
+//            // 响应码
+//            response.setStatusCode(HttpStatus.FORBIDDEN);
+//            // 返回
+//            return response.setComplete();
+//        }
+//        // 3. 用户鉴权（判断ak、sk是否合法）
         HttpHeaders headers = request.getHeaders();
         String accessKey = headers.getFirst("accessKey");
         String nonce = headers.getFirst("nonce");
@@ -136,7 +143,8 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
 
     @Override
     public int getOrder() {
-        return -1;
+        // 在GatewayFilter之后执行
+        return 10;
     }
 
     /**

@@ -71,4 +71,23 @@ public class ApiClient {
         System.out.println(result);
         return result;
     }
+
+    /**
+     * 随机返回一条土味情话
+     * @return
+     */
+    public Object loveQuotesRandom() {
+//        String result = HttpUtil.get("http://localhost:7529/api/loveQuotes/random");
+        HttpResponse httpResponse = HttpRequest.get("http://localhost:7529/api/loveQuotes/random")
+                .addHeaders(getHeaderMap(""))
+                .execute();
+        System.out.println(httpResponse.getStatus());
+        String result = httpResponse.body();
+        System.out.println(result);
+        return result;
+    }
+
+    public static void main(String[] args) {
+        new ApiClient().loveQuotesRandom();
+    }
 }

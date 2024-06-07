@@ -1,4 +1,4 @@
-package com.jxy.apigateway;
+package com.jxy.apigateway.init;
 
 import com.jxy.apicommon.dubbo.InterfaceInfoService;
 import com.jxy.apicommon.model.entity.InterfaceInfo;
