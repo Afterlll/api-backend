@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="dbf75337-cbf0-4217-9919-10b9e1861a25" name="Changes" comment="后端架构处理、网关实现统一跨域处理、限流、超时重试、降级、熔断">
+      <change afterPath="$PROJECT_DIR$/api-common/src/main/java/com/jxy/apicommon/model/vo/InterfaceInfoVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application-prod.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-interface/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-interface/src/main/java/com/jxy/apiinterface/config/RedisConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api-interface/src/main/resources/application-prod.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client-sdk/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-client-sdk/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client-sdk/src/main/java/com/jxy/api/clientsdk/client/ApiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-client-sdk/src/main/java/com/jxy/api/clientsdk/client/ApiClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client-sdk/src/main/java/com/jxy/api/clientsdk/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-client-sdk/src/main/java/com/jxy/api/clientsdk/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client-sdk/src/main/java/com/jxy/api/clientsdk/service/NonceService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-client-sdk/src/main/java/com/jxy/api/clientsdk/utils/RequestUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-client-sdk/src/main/java/com/jxy/api/clientsdk/utils/RequestUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-common/src/main/java/com/jxy/apicommon/model/entity/InterfaceInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-common/src/main/java/com/jxy/apicommon/model/entity/InterfaceInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/jxy/apigateway/filter/CustomGlobalFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/jxy/apigateway/filter/CustomGlobalFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-interface/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-interface/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-interface/src/main/java/com/jxy/apiinterface/controller/APIV1Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-interface/src/main/java/com/jxy/apiinterface/controller/APIV1Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-interface/src/main/java/com/jxy/apiinterface/controller/NameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-interface/src/main/java/com/jxy/apiinterface/controller/NameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-interface/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-interface/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-prod.yml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/api-gateway/src/main/java/com/jxy/apigateway/ApiGateMain.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../../dev/maven_3.9.1/apache-maven-3.9.1-bin/apache-maven-3.9.1" />
+        <option name="useMavenConfig" value="true" />
+        <option name="userSettingsFile" value="D:\dev\maven_3.9.1\apache-maven-3.9.1-bin\apache-maven-3.9.1\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="jreName" value="17" />
+    <option name="skipTests" value="true" />
+    <option name="vmOptions" value="-DarchetypeCatalog=internal" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="2hU7kBPFPB6quWOk9IzKZ5cvKR2" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "D:/code/project/api/api-be/api-interface",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "spring.configuration.checksum": "28b25fd52ee155f1bcc8192979f50df1",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql",
+      "redis"
+    ]
+  }
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\code\project\api\api-be\api-interface" />
+      <recent name="D:\code\project\api\api-be\api-gateway" />
+      <recent name="D:\code\project\api\api-be\api-interface\src\main\resources" />
+      <recent name="D:\code\project\api\api-be\api-gateway\src\main\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.jxy.apicommon.model.vo" />
+      <recent name="com.jxy.apiinterface.config" />
+      <recent name="com.jxy.apigateway.config" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.ApiBackendMain">
+    <configuration name="APIInterfaceMain" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ACTIVE_PROFILES" value="--spring.profiles.active=prod" />
+      <module name="api-interface" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.jxy.apiinterface.APIInterfaceMain" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApiBackendMain" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ACTIVE_PROFILES" value="--spring.profiles.active=prod" />
+      <module name="api-backend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.jxy.api.ApiBackendMain" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApiGateMain" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ACTIVE_PROFILES" value="--spring.profiles.active=prod" />
+      <module name="api-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.jxy.apigateway.ApiGateMain" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.ApiBackendMain" />
+      <item itemvalue="Spring Boot.APIInterfaceMain" />
+      <item itemvalue="Spring Boot.ApiGateMain" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dbf75337-cbf0-4217-9919-10b9e1861a25" name="Changes" comment="" />
+      <created>1717636942847</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1717636942847</updated>
+      <workItem from="1717636943814" duration="42640000" />
+      <workItem from="1718107276396" duration="11070000" />
+      <workItem from="1718239392508" duration="2622000" />
+      <workItem from="1718326079005" duration="16000" />
+      <workItem from="1718329334772" duration="2395000" />
+      <workItem from="1718349787995" duration="18994000" />
+    </task>
+    <task id="LOCAL-00001" summary="后端架构处理、网关实现统一跨域处理、限流、超时重试、降级、熔断">
+      <option name="closed" value="true" />
+      <created>1717731987053</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1717731987053</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="后端架构处理、网关实现统一跨域处理、限流、超时重试、降级、熔断" />
+    <option name="LAST_COMMIT_MESSAGE" value="后端架构处理、网关实现统一跨域处理、限流、超时重试、降级、熔断" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/api-gateway/src/main/java/com/jxy/apigateway/filter/CustomGlobalFilter.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/api-gateway/src/main/java/com/jxy/apigateway/filter/CustomGlobalFilter.java</url>
+          <line>159</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/api-backend/src/main/java/com/jxy/api/controller/InterfaceInfoController.java</url>
+          <line>181</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/api-gateway/src/main/java/com/jxy/apigateway/filter/CustomGlobalFilter.java</url>
+          <line>92</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/api-backend/src/main/java/com/jxy/api/service/impl/UserInterfaceInfoServiceImpl.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/api-interface/src/main/java/com/jxy/apiinterface/controller/APIV1Controller.java</url>
+          <line>82</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/api-backend/src/main/java/com/jxy/api/controller/InterfaceInfoController.java</url>
+          <line>260</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/api-client-sdk/src/main/java/com/jxy/api/clientsdk/client/ApiClient.java</url>
+          <line>80</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/api-interface/src/main/java/com/jxy/apiinterface/controller/NameController.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/api-gateway/src/main/java/com/jxy/apigateway/filter/CustomGlobalFilter.java</url>
+          <line>163</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/api-backend/src/main/java/com/jxy/api/service/impl/UserServiceImpl.java</url>
+          <line>168</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/api-backend/src/main/java/com/jxy/api/controller/InterfaceInfoController.java</url>
+          <line>301</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/api-backend/src/main/java/com/jxy/api/controller/InterfaceInfoController.java</url>
+          <line>334</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

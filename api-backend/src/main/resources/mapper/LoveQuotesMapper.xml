@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxy.api.mapper.LoveQuotesMapper">
+
+    <resultMap id="BaseResultMap" type="com.jxy.api.model.entity.LoveQuotes">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="quote" column="quote" jdbcType="VARCHAR"/>
+            <result property="category" column="category" jdbcType="VARCHAR"/>
+            <result property="sentiment" column="sentiment" jdbcType="VARCHAR"/>
+            <result property="emotion" column="emotion" jdbcType="VARCHAR"/>
+            <result property="author" column="author" jdbcType="VARCHAR"/>
+            <result property="likes" column="likes" jdbcType="INTEGER"/>
+            <result property="favorites" column="favorites" jdbcType="INTEGER"/>
+            <result property="createtime" column="createTime" jdbcType="TIMESTAMP"/>
+            <result property="updatetime" column="updateTime" jdbcType="TIMESTAMP"/>
+            <result property="isdelete" column="isDelete" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,quote,category,
+        sentiment,emotion,author,
+        likes,favorites,createTime,
+        updateTime,isDelete
+    </sql>
+    <select id="randomQuotes" resultType="com.jxy.api.model.entity.LoveQuotes">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM love_quotes
+        ORDER BY RAND()
+        LIMIT 1
+    </select>
+</mapper>
