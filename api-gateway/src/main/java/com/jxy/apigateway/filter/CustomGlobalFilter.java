@@ -1,12 +1,10 @@
 package com.jxy.apigateway.filter;
 
-import com.jxy.api.clientsdk.utils.SignUtils;
 import com.jxy.apicommon.dubbo.InterfaceInfoService;
 import com.jxy.apicommon.dubbo.UserInterfaceInfoService;
 import com.jxy.apicommon.dubbo.UserService;
 import com.jxy.apicommon.model.dto.InterfaceInfoQueryRequest;
 import com.jxy.apicommon.model.entity.InterfaceInfo;
-import com.jxy.apicommon.model.entity.User;
 import com.jxy.apigateway.init.SaveInterfaceInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
@@ -62,7 +60,10 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         //跳过检测
-        if (exchange.getAttribute(ATTRIBUTE_IGNORE_CUSTOM_GLOBAL_FILTER) != null) {
+//        if (exchange.getAttribute(ATTRIBUTE_IGNORE_CUSTOM_GLOBAL_FILTER) != null) {
+//            return chain.filter(exchange);
+//        }
+        if (!exchange.getRequest().getPath().value().startsWith("/api/service")) {
             return chain.filter(exchange);
         }
         // 1. 打印请求日志
@@ -84,38 +85,38 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
 //        }
 //        // 3. 用户鉴权（判断ak、sk是否合法）
         HttpHeaders headers = request.getHeaders();
-        String accessKey = headers.getFirst("accessKey");
-        String nonce = headers.getFirst("nonce");
-        String timestamp = headers.getFirst("timestamp");
-        String sign = headers.getFirst("sign");
-        String body = headers.getFirst("body");
+//        String accessKey = headers.getFirst("accessKey");
+//        String nonce = headers.getFirst("nonce");
+//        String timestamp = headers.getFirst("timestamp");
+//        String sign = headers.getFirst("sign");
+//        String body = headers.getFirst("body");
         long userId = Long.parseLong(Optional.ofNullable(headers.getFirst("userId")).orElse(""));
         long interfaceId = Long.parseLong(Optional.ofNullable(headers.getFirst("interfaceId")).orElse(""));
-        // 获取分配给用户的 ak、sk
-        User user = userService.queryById(userId);
-        if (null == user) {
-            return handleNoAuth(response);
-        }
-        String accessKeyUser = user.getAccessKey();
-        String secretKeyUser = user.getSecretKey();
-        // 验证 ak
-        if (!accessKeyUser.equals(accessKey)) {
-            return handleNoAuth(response);
-        }
-        // 验证timestamp
-        long currentTime = Instant.now().getEpochSecond();
-        long receivedTimestamp = Long.parseLong(Optional.ofNullable(timestamp).orElse("0"));
-        if (Math.abs(currentTime - receivedTimestamp) > timestampValidity.getSeconds()) {
-            return handleNoAuth(response);
-        }
-        // 验证nonce
-        if (!isValidNonce(nonce)) {
-            return handleNoAuth(response);
-        }
-        // 验证sk
-        if (null == sign || !sign.equals(SignUtils.genSign(body, secretKeyUser))) {
-            return handleNoAuth(response);
-        }
+//        // 获取分配给用户的 ak、sk
+//        User user = userService.queryById(userId);
+//        if (null == user) {
+//            return handleNoAuth(response);
+//        }
+//        String accessKeyUser = user.getAccessKey();
+//        String secretKeyUser = user.getSecretKey();
+//        // 验证 ak
+//        if (!accessKeyUser.equals(accessKey)) {
+//            return handleNoAuth(response);
+//        }
+//        // 验证timestamp
+//        long currentTime = Instant.now().getEpochSecond();
+//        long receivedTimestamp = Long.parseLong(Optional.ofNullable(timestamp).orElse("0"));
+//        if (Math.abs(currentTime - receivedTimestamp) > timestampValidity.getSeconds()) {
+//            return handleNoAuth(response);
+//        }
+//        // 验证nonce
+//        if (!isValidNonce(nonce)) {
+//            return handleNoAuth(response);
+//        }
+//        // 验证sk
+//        if (null == sign || !sign.equals(SignUtils.genSign(body, secretKeyUser))) {
+//            return handleNoAuth(response);
+//        }
         // 4. 请求的模拟接口是否存在
         // 直接从内存中读取网关接口是否存在
         Map<String, String> interfaceInfoMap = SaveInterfaceInfo.interfaceInfoMap.get(interfaceId);
@@ -144,7 +145,7 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
     @Override
     public int getOrder() {
         // 在GatewayFilter之后执行
-        return 10;
+        return -1;
     }
 
     /**

@@ -1,0 +1,70 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      # 设置超时时间
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 5s
+      # 响应头加上 source ： wangkeyao
+      default-filters:
+        - AddResponseHeader=source, wangkeyao
+      # 请求路径为 /api/** 都转发到后端服务 http://localhost:8123
+      routes:
+        - id: default-fallback
+          uri: http://localhost:7529
+          predicates:
+             - Path=/api/fallback
+          filters:
+             - name: FallbackHeaders
+               args:
+                 executionExceptionTypeHeaderName: Error-Header
+             - name: CircuitBreaker
+               args:
+                 name: fetchIngredients
+                 fallbackUri: forward:/api/fallback
+        - id: api-service-route
+          uri: http://localhost:8123
+          predicates:
+            - Path=/api/service/**
+          filters:
+            - name: Retry
+              args:
+                retries: 3
+                statuses: BAD_GATEWAY
+                methods: GET,POST
+                backoff:
+                  firstBackoff: 10ms
+                  maxBackoff: 50ms
+                  factor: 2
+                  basedOnPreviousValue: true
+            - name: RequestRateLimiter
+              args:
+                key-resolver: '#{@uriKeyResolver}'
+                redis-rate-limiter.replenishRate: 300 # 令牌桶每秒填充速率
+                redis-rate-limiter.burstCapacity: 700 # 令牌桶总容量
+                redis-rate-limiter.requestedTokens: 1 # 每次消耗令牌个数
+        - id: api-backend-route
+          uri: http://localhost:7529
+          # 跳过全局过滤器
+          filters:
+            - IgnoreGlobalFilter  #在本路由启用跳过全局过滤器
+          predicates:
+            - Path=/api/**
+  main:
+    web-application-type: reactive
+  redis:
+    host: localhost
+    port: 6379
+    database: 5
+    timeout: 20000
+server:
+  port: 8090
+dubbo:
+  application:
+    name: api-gateway-consumer
+    logger: slf4j
+    qos-port: 33333
+  registry:
+    address: nacos://${nacos.address:127.0.0.1}:8848?username=nacos&password=nacos

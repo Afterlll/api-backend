@@ -80,7 +80,7 @@ public class APIV1Controller {
      */
     @GetMapping("/ipInfo")
     public ResultResponse getIpInfo(IpInfoParams ipInfoParams) {
-        return baseResponse("https://api.vvhan.com/api/getIpInfo", ipInfoParams);
+        return baseResponse("https://api.vvhan.com/api/ipInfo", ipInfoParams);
     }
 
     /**

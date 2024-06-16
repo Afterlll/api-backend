@@ -23,9 +23,9 @@ spring:
 #            # 暴露的头部，如果有特定需要的话
 #            exposedHeaders: "*"
       # 设置超时时间
-      httpclient:
-        connect-timeout: 1000
-        response-timeout: 5s
+#      httpclient:
+#        connect-timeout: 1000
+#        response-timeout: 5s
       # 响应头加上 source ： wangkeyao
       default-filters:
         - AddResponseHeader=source, wangkeyao
@@ -107,12 +107,6 @@ spring:
     port: 6379
     database: 5
     timeout: 20000
-    jedis:
-      pool:
-        max-active: 8
-        min-idle: 0
-        max-idle: 8
-        max-wait: -1
 server:
   port: 8090
 # spring gateway 开启日志追踪

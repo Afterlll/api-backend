@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Field;
 
-@Slf4j
 public class RequestUtils {
 
     /**
@@ -63,7 +62,7 @@ public class RequestUtils {
      */
     public static String get(String url) {
         String body = HttpRequest.get(url).execute().body();
-        log.info("【interface】：请求地址：{}，响应数据：{}", url, body);
+        System.out.println("【interface】：请求地址：{}，响应数据：{}" + url + body);
         return body;
     }
 }

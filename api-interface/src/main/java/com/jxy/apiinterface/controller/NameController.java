@@ -1,5 +1,6 @@
 package com.jxy.apiinterface.controller;
 
+import cn.hutool.json.JSONUtil;
 import com.jxy.api.clientsdk.model.User;
 import com.jxy.api.clientsdk.utils.SignUtils;
 import org.springframework.web.bind.annotation.*;
@@ -35,31 +36,32 @@ public class NameController {
     private final Duration timestampValidity = Duration.ofMinutes(5); // timestamp有效期
     @PostMapping("/user")
     public String getUsernameByPost(@RequestBody User user, HttpServletRequest request) {
-        String accessKey = request.getHeader("accessKey");
-        String nonce = request.getHeader("nonce");
-        String body = request.getHeader("body");
-        String timestamp = request.getHeader("timestamp");
-        String sign = request.getHeader("sign");
-        // 验证 ak
-        if (!accessKeyUser.equals(accessKey)) {
-            throw new RuntimeException("无权限");
-        }
-        // 验证timestamp
-        long currentTime = Instant.now().getEpochSecond();
-        long receivedTimestamp = Long.parseLong(timestamp);
-        if (Math.abs(currentTime - receivedTimestamp) > timestampValidity.getSeconds()) {
-            throw new RuntimeException("请求已过期");
-        }
-        // 验证nonce
-        if (!isValidNonce(nonce)) {
-            throw new RuntimeException("无效的nonce");
-        }
-        // 验证sk
-        if (!sign.equals(SignUtils.genSign(body, secretKeyUSer))) {
-            throw new RuntimeException("无权限");
-        }
+//        String accessKey = request.getHeader("accessKey");
+//        String nonce = request.getHeader("nonce");
+//        String body = request.getHeader("body");
+//        String timestamp = request.getHeader("timestamp");
+//        String sign = request.getHeader("sign");
+//        // 验证 ak
+//        if (!accessKeyUser.equals(accessKey)) {
+//            throw new RuntimeException("无权限");
+//        }
+//        // 验证timestamp
+//        long currentTime = Instant.now().getEpochSecond();
+//        long receivedTimestamp = Long.parseLong(timestamp);
+//        if (Math.abs(currentTime - receivedTimestamp) > timestampValidity.getSeconds()) {
+//            throw new RuntimeException("请求已过期");
+//        }
+//        // 验证nonce
+//        if (!isValidNonce(nonce)) {
+//            throw new RuntimeException("无效的nonce");
+//        }
+//        // 验证sk
+//        if (!sign.equals(SignUtils.genSign(body, secretKeyUSer))) {
+//            throw new RuntimeException("无权限");
+//        }
         String result = "POST user.name = " + user.getName();
-        return result;
+        System.out.println(result);
+        return JSONUtil.toJsonStr(user);
     }
 
     // 存储nonce并验证其有效性

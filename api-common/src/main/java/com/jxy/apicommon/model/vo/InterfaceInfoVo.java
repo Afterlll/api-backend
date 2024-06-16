@@ -1,4 +1,4 @@
-package com.jxy.apicommon.model.entity;
+package com.jxy.apicommon.model.vo;
 
 import lombok.Data;
 
@@ -10,11 +10,15 @@ import java.util.Date;
  * @TableName interface_info
  */
 @Data
-public class InterfaceInfo implements Serializable {
+public class InterfaceInfoVo implements Serializable {
     /**
      * 主键
      */
     private Long id;
+    /**
+     * 调用总次数
+     */
+    private Integer totalNum;
 
     /**
      * 名称
@@ -30,6 +34,7 @@ public class InterfaceInfo implements Serializable {
      * 图片
      */
     private String avatarUrl;
+
     /**
      * 接口协议
      */
