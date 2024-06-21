@@ -4,7 +4,7 @@ spring:
   # DataSource Config
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/api
+    url: jdbc:mysql://121.37.6.20:3306/api
     username: root
     password: 2324520lL*
   mvc:
@@ -17,7 +17,7 @@ spring:
   # redis 配置
   redis:
     port: 6379
-    host: localhost
+    host: 121.37.6.20
     database: 0
 server:
   port: 7529
@@ -40,4 +40,4 @@ dubbo:
     name: tri
     port: 50052
   registry:
-    address: nacos://${nacos.address:127.0.0.1}:8848?username=nacos&password=nacos
+    address: nacos://${nacos.address:localhost}:8848?username=nacos&password=nacos

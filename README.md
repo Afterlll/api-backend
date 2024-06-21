@@ -28,11 +28,11 @@
 
 **😀 作为用户您可以通过注册登录账户，获取接口调用权限，并根据自己的需求浏览和选择适合的接口。您可以在线进行接口调试，快速验证接口的功能和效果。**
 
-**💻 作为开发者 我们提供了[客户端SDK: 江喜原-API-SDK](https://github.com/Afterlll/api-backend-sdk)， 通过[开发者凭证](https://api.qimuu.icu/account/center)即可将轻松集成接口到您的项目中，实现更高效的开发和调用。**
+**💻 作为开发者 我们提供了[客户端SDK: 江喜原-API-SDK](https://github.com/Afterlll/api-backend)， 通过[开发者凭证](https://api.wangkeyao.com/account/center)即可将轻松集成接口到您的项目中，实现更高效的开发和调用。**
 
 **🤝 您可以将自己的接口接入到江喜原-API 接口开放平台平台上，并发布给其他用户使用。 您可以管理和各个接口，以便更好地分析和优化接口性能。**
 
-**👌 我们还提供了[开发者在线文档](https://doc.qimuu.icu/)和技术支持，帮助您快速接入和发布接口。**
+**👌 我们还提供了[开发者在线文档](https://doc.wangkeyao.com/)和技术支持，帮助您快速接入和发布接口。**
 
 **🏁 无论您是用户还是开发者，江喜原-API 接口开放平台都致力于提供稳定、安全、高效的接口调用服务，帮助您实现更快速、便捷的开发和调用体验。**
 
@@ -43,9 +43,9 @@
 
 -  **[江喜原-API-SDK](https://github.com/Afterlll/api-backend)** 🛠
 
--  **[江喜原-API 接口开放平台 🔗](https://api.qimuu.icu/)**
+-  **[江喜原-API 接口开放平台 🔗](https://api.wangkeyao.com/)**
 
--  **[江喜原-API-DOC 开发者文档 📖](https://doc.qimuu.icu/)**
+-  **[江喜原-API-DOC 开发者文档 📖](https://doc.wangkeyao.com/)**
 
 
 ## 目录结构 📑
@@ -58,7 +58,7 @@
 | **🕸️ [江喜原-API-gateway](https://github.com/Afterlll/api-backend)**             | 网关模块           |
 | **🔗 [江喜原-API-interface](https://github.com/Afterlll/api-backend)**          | 接口模块           |
 | **🛠 [qi-qpi-sdk](https://github.com/Afterlll/api-backend)** | 开发者调用sdk      |
-| **📘 [江喜原-API-doc](https://doc.qimuu.icu/)**            | 接口在线文档       |
+| **📘 [江喜原-API-doc](https://doc.wangkeyao.com/)** | 接口在线文档       |
 
 ## 项目流程 🗺️
 
@@ -96,11 +96,11 @@ yarn build or npm run build
 
 ## 网站导航 🧭
 
--  **[江喜原-API-SDK](https://github.com/Afterlll/api-backend-sdk)** 🛠
+-  **[江喜原-API-SDK](https://github.com/Afterlll/api-backend)** 🛠
 
-- **[江喜原-API 接口开放平台 🔗](https://api.qimuu.icu/)**
+- **[江喜原-API 接口开放平台 🔗](https://api.wangkeyao.com/)**
 
-- **[江喜原-API-DOC 开发者文档 📖](https://doc.qimuu.icu/)**
+- **[江喜原-API-DOC 开发者文档 📖](https://doc.wangkeyao.com/)**
 
 
 
@@ -115,11 +115,8 @@ yarn build or npm run build
 - Dubbo 分布式（RPC、Nacos）
 - Spring Cloud Gateway 微服务网关
 - API 签名认证（Http 调用）
-- IJPay-AliPay  支付宝支付
-- WeiXin-Java-Pay  微信支付
 - Swagger + Knife4j 接口文档
 - Spring Boot Starter（SDK 开发）
-- Jakarta.Mail 邮箱通知、验证码
 - Spring Session Redis 分布式登录
 - Apache Commons Lang3 工具类
 - MyBatis-Plus 及 MyBatis X 自动生成
@@ -137,16 +134,16 @@ yarn build or npm run build
 
 - OpenAPI 前端代码生成
 
+- VuePress 2
+
 
 
 ## 功能介绍 📋
 
-`坤币`即积分，用于平台接口调用。
-
 |                          **功能**                           | 游客 | **普通用户** | **管理员** |
 | ----------------------------------------------------- |--------------|-----|-----|
 | [**江喜原-API-SDK**](https://github.com/Afterlll/api-backend)使用 | ✅ | ✅ |     ✅      |
-|        **[开发者API在线文档](http://doc.qimuu.icu)**        | ✅ | ✅ |     ✅      |
+|        **[开发者API在线文档](http://doc.wangkeyao.com)**        | ✅ | ✅ |     ✅      |
 |                    切换主题、深色、暗色                     | ✅ | ✅ | ✅ |
 |                        在线调试接口                         | ❌ | ✅ | ✅ |
 |                 接口大厅搜索接口、浏览接口                  | ✅ | ❌ | ✅ |
@@ -160,48 +157,57 @@ yarn build or npm run build
 
 ### 首页
 
-![img.png](public%2Fassets%2Fimages%2Fimg.png)
+![img](public/assets/images/img.png)
 
 ### 接口广场
 
-![img_1.png](public%2Fassets%2Fimages%2Fimg_1.png)
+![img_1](README.assets/img_1.png)
+
+
 
 ### 开发者在线文档
 
-![api](https://img.qimuu.icu/typory/api.png)
+![img13](README.assets/img13.png)
 
-![api2](https://img.qimuu.icu/typory/api2.png)
+![img14](README.assets/img14-1718963329938-4.png)
+
+
 
 ### 接口描述
 
 #### **在线API**
 
-![img_2.png](public%2Fassets%2Fimages%2Fimg_2.png)
+![img_2](README.assets/img_2.png)
 
-#### 在线调试工具![img_3.png](public%2Fassets%2Fimages%2Fimg_3.png)
+#### 在线调试工具![img_3](README.assets/img_3.png)
 
-#### **错误码参考**![img_4.png](public%2Fassets%2Fimages%2Fimg_4.png)
+#### **错误码参考**
 
-#### **接口调用代码示例**![img_5.png](public%2Fassets%2Fimages%2Fimg_5.png)
+![img_4](README.assets/img_4.png)
 
-### 管理页
+#### **接口调用代码示例**
+
+![img_5](README.assets/img_5.png)
 
 #### 用户管理
 
-![img_7.png](public%2Fassets%2Fimages%2Fimg_7.png)
+![img_7](README.assets/img_7.png)
 
-#### 接口管理![img_6.png](public%2Fassets%2Fimages%2Fimg_6.png)
+#### 接口管理
+
+![img_6](README.assets/img_6.png)
 
 ### 个人信息
 
 #### 信息展示
-![img_8.png](public%2Fassets%2Fimages%2Fimg_8.png)
+![img_8](README.assets/img_8.png)
 
 ### 登录/注册
-![img_11.png](public%2Fassets%2Fimages%2Fimg_11.png)
-![img_12.png](public%2Fassets%2Fimages%2Fimg_12.png)
+![img_11](README.assets/img_11.png)
+![img_12](README.assets/img_12.png)
+
 ### 主题切换
 
-#### 深色主题![img_10.png](public%2Fassets%2Fimages%2Fimg_10.png)
+#### 深色主题![img_10](README.assets/img_10.png)
 
-#### 浅色主题![img_9.png](public%2Fassets%2Fimages%2Fimg_9.png)
+#### 浅色主题![img_9](README.assets/img_9.png)

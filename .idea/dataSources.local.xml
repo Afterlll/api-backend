@@ -33,5 +33,33 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
+    <data-source name="0@121.37.6.20" uuid="a5e5873d-bdb1-4e56-8fce-86af85ce3f02">
+      <database-info product="Redis Standalone" version="6.0.9" jdbc-version="4.2" driver-name="Redis JDBC Driver" driver-version="1.4" dbms="REDIS" exact-version="6.0.9" exact-driver-version="1.4" />
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema">
+            <name qname="@" />
+            <name qname="1" />
+            <name qname="2" />
+            <name qname="3" />
+            <name qname="4" />
+            <name qname="5" />
+            <name qname="6" />
+            <name qname="7" />
+            <name qname="8" />
+            <name qname="9" />
+            <name qname="10" />
+            <name qname="11" />
+            <name qname="12" />
+            <name qname="13" />
+            <name qname="14" />
+            <name qname="15" />
+          </node>
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
   </component>
 </project>

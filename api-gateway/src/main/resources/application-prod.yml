@@ -55,7 +55,7 @@ spring:
   main:
     web-application-type: reactive
   redis:
-    host: localhost
+    host: 121.37.6.20
     port: 6379
     database: 5
     timeout: 20000
@@ -67,4 +67,4 @@ dubbo:
     logger: slf4j
     qos-port: 33333
   registry:
-    address: nacos://${nacos.address:127.0.0.1}:8848?username=nacos&password=nacos
+    address: nacos://${nacos.address:localhost}:8848?username=nacos&password=nacos

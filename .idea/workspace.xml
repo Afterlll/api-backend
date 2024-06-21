@@ -4,26 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbf75337-cbf0-4217-9919-10b9e1861a25" name="Changes" comment="后端架构处理、网关实现统一跨域处理、限流、超时重试、降级、熔断">
-      <change afterPath="$PROJECT_DIR$/api-common/src/main/java/com/jxy/apicommon/model/vo/InterfaceInfoVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-gateway/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application-prod.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-interface/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-interface/src/main/java/com/jxy/apiinterface/config/RedisConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-interface/src/main/resources/application-prod.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-client-sdk/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-client-sdk/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-client-sdk/src/main/java/com/jxy/api/clientsdk/client/ApiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-client-sdk/src/main/java/com/jxy/api/clientsdk/client/ApiClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-client-sdk/src/main/java/com/jxy/api/clientsdk/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-client-sdk/src/main/java/com/jxy/api/clientsdk/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-client-sdk/src/main/java/com/jxy/api/clientsdk/service/NonceService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-client-sdk/src/main/java/com/jxy/api/clientsdk/utils/RequestUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-client-sdk/src/main/java/com/jxy/api/clientsdk/utils/RequestUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-common/src/main/java/com/jxy/apicommon/model/entity/InterfaceInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-common/src/main/java/com/jxy/apicommon/model/entity/InterfaceInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/jxy/apigateway/filter/CustomGlobalFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/jxy/apigateway/filter/CustomGlobalFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-interface/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-interface/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-interface/src/main/java/com/jxy/apiinterface/controller/APIV1Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-interface/src/main/java/com/jxy/apiinterface/controller/APIV1Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-interface/src/main/java/com/jxy/apiinterface/controller/NameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-interface/src/main/java/com/jxy/apiinterface/controller/NameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-interface/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-interface/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-prod.yml" beforeDir="false" />
+    <list default="true" id="dbf75337-cbf0-4217-9919-10b9e1861a25" name="Changes" comment="增加上线配置">
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/jxy/apigateway/ApiGateMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/jxy/apigateway/ApiGateMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application-prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application-prod.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,37 +53,38 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/code/project/api/api-be/api-interface",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
-    "spring.configuration.checksum": "28b25fd52ee155f1bcc8192979f50df1",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/code/project/api/api-be&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;28b25fd52ee155f1bcc8192979f50df1&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql",
-      "redis"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;,
+      &quot;redis&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\code\project\api\api-be" />
       <recent name="D:\code\project\api\api-be\api-interface" />
       <recent name="D:\code\project\api\api-be\api-gateway" />
       <recent name="D:\code\project\api\api-be\api-interface\src\main\resources" />
@@ -163,7 +147,14 @@
       <workItem from="1718239392508" duration="2622000" />
       <workItem from="1718326079005" duration="16000" />
       <workItem from="1718329334772" duration="2395000" />
-      <workItem from="1718349787995" duration="18994000" />
+      <workItem from="1718349787995" duration="20654000" />
+      <workItem from="1718585022244" duration="35000" />
+      <workItem from="1718587408323" duration="1962000" />
+      <workItem from="1718605679426" duration="5746000" />
+      <workItem from="1718614042278" duration="747000" />
+      <workItem from="1718671336968" duration="801000" />
+      <workItem from="1718712092926" duration="3723000" />
+      <workItem from="1718757954812" duration="21000" />
     </task>
     <task id="LOCAL-00001" summary="后端架构处理、网关实现统一跨域处理、限流、超时重试、降级、熔断">
       <option name="closed" value="true" />
@@ -173,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717731987053</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="增加上线配置">
+      <option name="closed" value="true" />
+      <created>1718522631075</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1718522631075</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,7 +180,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="后端架构处理、网关实现统一跨域处理、限流、超时重试、降级、熔断" />
-    <option name="LAST_COMMIT_MESSAGE" value="后端架构处理、网关实现统一跨域处理、限流、超时重试、降级、熔断" />
+    <MESSAGE value="增加上线配置" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加上线配置" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
